@@ -14,7 +14,14 @@ const MODES = {
 const own = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
 const equal = (a, b) => timingSafeEqual(createHash('sha256').update(a).digest(), createHash('sha256').update(b).digest());
 const signature = (data, secret) => createHmac('sha256', secret).update(data).digest('base64url');
-const details = keys => ({ events: keys.map(key => EVENTS[key]), venue: 'IQBAL PALACE', address: 'Dhamial Road, Rawalpindi' });
+const details = keys => ({
+  events: keys.map(key => ({
+    ...EVENTS[key],
+    ...(key === 'barat' ? {} : {
+      venue: 'IQBAL PALACE', address: 'Dhamial Road, Rawalpindi'
+    })
+  }))
+});
 
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'private, no-store, max-age=0');
@@ -63,3 +70,4 @@ module.exports = async function handler(req, res) {
   res.setHeader('Allow', 'GET, POST');
   return res.status(405).json({ error: 'Method not allowed.' });
 };
+
