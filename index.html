@@ -102,7 +102,8 @@ async function request(method, credential, body) {
 function showEvent(key) {
   const ev = currentData.events.find(item => item.key === key);
   if (!ev) return;
-  $('event-content').innerHTML = `<p class="event-urdu urdu" lang="ur" dir="rtl">${esc(ev.urdu)}</p><h3 class="event-title">${esc(ev.title)}</h3><p class="date">${esc(ev.date)}</p><p class="time">${esc(ev.time)}</p><div class="eyebrow">Join us at</div><p class="venue">${esc(currentData.venue)}</p><p class="address">${esc(currentData.address)}</p><a class="gold-btn" href="https://maps.google.com/?q=Iqbal+Palace+Dhamial+Road+Rawalpindi" target="_blank" rel="noopener noreferrer">View location ↗</a>`;
+  const location = ev.venue ? `<div class="eyebrow">Join us at</div><p class="venue">${esc(ev.venue)}</p><p class="address">${esc(ev.address)}</p><a class="gold-btn" href="https://maps.google.com/?q=Iqbal+Palace+Dhamial+Road+Rawalpindi" target="_blank" rel="noopener noreferrer">View location ↗</a>` : '';
+  $('event-content').innerHTML = `<p class="event-urdu urdu" lang="ur" dir="rtl">${esc(ev.urdu)}</p><h3 class="event-title">${esc(ev.title)}</h3><p class="date">${esc(ev.date)}</p><p class="time">${esc(ev.time)}</p>${location}`;
   document.querySelectorAll('#event-nav button').forEach(btn => { const active = btn.dataset.key === key; btn.setAttribute('aria-selected', String(active)); btn.tabIndex = active ? 0 : -1; });
   $('event-content').setAttribute('aria-labelledby', 'tab-' + key);
 }
