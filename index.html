@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Malik Muhammad Idrees</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #1a0507; color: #fef3c7; }
+        .royal-font { font-family: 'Cinzel', serif; }
+        .script-font { font-family: 'Great Vibes', cursive; }
+        
+        /* Floating Petal Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-20px) rotate(15deg); opacity: 1; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        
+        /* Shimmer Gold Effect */
+        .gold-gradient {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-image: linear-gradient(to bottom right, #bf953f, #fcf6ba, #aa771c) 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 relative overflow-x-hidden">
+
+    <!-- Decorative Background Glow & Floating Elements -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-600/10 blur-[140px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-10 left-6 text-2xl animate-float opacity-30 pointer-events-none">✨</div>
+    <div class="absolute top-20 right-8 text-2xl animate-float opacity-30 pointer-events-none" style="animation-delay: 2s;">🌹</div>
+
+    <div class="w-full max-w-md z-10 flex flex-col items-center">
+        
+        <!-- Host & Family Header -->
+        <div class="text-center mt-4 mb-6">
+            <span class="text-amber-300 uppercase tracking-[0.25em] text-[11px] font-semibold">Mrs. Haji Mazhar Hussain</span>
+            <p class="text-stone-300 text-xs mt-1 italic">Request the pleasure of your company at the Wedding Ceremony of their beloved son</p>
+            <h1 class="royal-font text-2xl sm:text-3xl font-bold mt-3 gold-gradient">Malik Muhammad Idrees</h1>
+            <p class="text-stone-400 text-xs tracking-widest uppercase mt-1">with</p>
+            <h2 class="royal-font text-xl sm:text-2xl font-semibold text-amber-200 mt-1">D/o M. Ejaz Mughal</h2>
+        </div>
+
+        <!-- Event Selection Tabs -->
+        <div class="flex bg-stone-900/90 p-1.5 rounded-2xl border border-amber-500/30 w-full mb-6 shadow-2xl backdrop-blur-md">
+            <button onclick="switchEvent('mehndi')" id="tab-mehndi" class="flex-1 py-2 text-xs font-semibold rounded-xl transition-all duration-300">Mehndi</button>
+            <button onclick="switchEvent('barat')" id="tab-barat" class="flex-1 py-2 text-xs font-semibold rounded-xl transition-all duration-300">Barat</button>
+            <button onclick="switchEvent('walima')" id="tab-walima" class="flex-1 py-2 text-xs font-semibold rounded-xl transition-all duration-300">Walima</button>
+        </div>
+
+        <!-- Dynamic Event Card Interface -->
+        <div class="w-full bg-gradient-to-b from-[#250a0d] to-[#150406] border-2 gold-border rounded-3xl p-6 shadow-2xl relative text-center">
+            <!-- Corner Floral Accents (Simulated via CSS border & badge) -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-600 to-amber-400 text-stone-950 px-4 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase shadow-md" id="card-badge">
+                Rasm-e-Hina
+            </div>
+            
+            <div class="my-5">
+                <div class="w-14 h-14 mx-auto bg-amber-500/10 border border-amber-500/30 rounded-full flex items-center justify-center text-amber-300 mb-3 text-xl shadow-inner" id="event-icon">🌿</div>
+                <h3 id="event-title" class="royal-font text-xl font-bold text-amber-100">Rasm-e-Hina</h3>
+                <p id="event-date" class="text-amber-400 font-semibold mt-2 text-sm">Friday, 30th Oct, 2026</p>
+                <p id="event-time" class="text-stone-300 text-xs mt-1 bg-stone-900/60 py-1.5 px-3 rounded-lg inline-block border border-stone-800">07:00 to 09:00 pm</p>
+            </div>
+
+            <div class="border-t border-amber-900/40 pt-4 mt-4">
+                <p class="text-stone-400 text-[10px] uppercase tracking-widest">Venue Location</p>
+                <p id="event-venue" class="text-stone-100 font-medium text-xs mt-1">IQBAL PALACE (Dhamial Road Rwp.)</p>
+                <a id="map-link" href="https://maps.google.com/?q=Iqbal+Palace+Dhamial+Road+Rawalpindi" target="_blank" class="inline-block mt-4 px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 text-xs font-bold rounded-xl transition shadow-lg">Get Directions</a>
+            </div>
+        </div>
+
+        <!-- Looking Forward / Contacts Section -->
+        <div class="w-full mt-6 bg-stone-900/60 border border-stone-800 rounded-2xl p-4 text-center">
+            <p class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">Looking Forward</p>
+            <p class="text-stone-200 text-xs font-semibold">Waseem Babar</p>
+            <div class="grid grid-cols-2 gap-1 text-[11px] text-stone-300 mt-2">
+                <p>M. Jamal: <a href="tel:03343647811" class="text-amber-300 underline">0334-3647811</a></p>
+                <p>M. Naeem</p>
+                <p>M. Nabeel: <a href="tel:03089287331" class="text-amber-300 underline">0308-9287331</a></p>
+                <p>M. Khalil: <a href="tel:03175257749" class="text-amber-300 underline">0317-5257749</a></p>
+            </div>
+            <p class="text-stone-400 text-[11px] mt-2 italic">& All Family Members</p>
+        </div>
+
+        <!-- Share Links for Specific Guests -->
+        <div class="mt-6 text-center w-full">
+            <p class="text-stone-400 text-[11px]">Generate specific guest link:</p>
+            <div class="flex gap-2 mt-2 justify-center">
+                <button onclick="copyLink('mehndi')" class="text-[11px] bg-stone-900 hover:bg-stone-800 text-amber-200 px-3 py-1.5 rounded-lg border border-amber-500/20 transition">Mehndi Link</button>
+                <button onclick="copyLink('barat')" class="text-[11px] bg-stone-900 hover:bg-stone-800 text-amber-200 px-3 py-1.5 rounded-lg border border-amber-500/20 transition">Barat Link</button>
+                <button onclick="copyLink('walima')" class="text-[11px] bg-stone-900 hover:bg-stone-800 text-amber-200 px-3 py-1.5 rounded-lg border border-amber-500/20 transition">Walima Link</button>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="mt-8 text-stone-500 text-[11px] text-center">
+        R.S.V.P: All Family Members • Stay active through Nov 8 & beyond
+    </footer>
+
+    <script>
+        const events = {
+            mehndi: {
+                badge: "Rasm-e-Hina",
+                title: "Rasm-e-Hina",
+                date: "Friday, 30th Oct, 2026",
+                time: "07:00 to 09:00 pm",
+                venue: "IQBAL PALACE (Dhamial Road Rwp.)",
+                icon: "🌿",
+                map: "https://maps.google.com/?q=Iqbal+Palace+Dhamial+Road+Rawalpindi"
+            },
+            barat: {
+                badge: "Wedding Ceremony",
+                title: "Barat Programme",
+                date: "Saturday, 31st Oct, 2026",
+                time: "Sehra Bandi: 10:00 am | Departure: 12:00 pm",
+                venue: "IQBAL PALACE (Dhamial Road Rwp.)",
+                icon: "🏛️",
+                map: "https://maps.google.com/?q=Iqbal+Palace+Dhamial+Road+Rawalpindi"
+            },
+            walima: {
+                badge: "Reception",
+                title: "Walima Programme",
+                date: "Sunday, 1st Nov, 2026",
+                time: "01:00 to 03:00 pm",
+                venue: "IQBAL PALACE (Dhamial Road Rwp.)",
+                icon: "✨",
+                map: "https://maps.google.com/?q=Iqbal+Palace+Dhamial+Road+Rawalpindi"
+            }
+        };
+
+        function switchEvent(type) {
+            const url = new URL(window.location);
+            url.searchParams.set('event', type);
+            window.history.pushState({}, '', url);
+
+            ['mehndi', 'barat', 'walima'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === type) {
+                    btn.className = "flex-1 py-2 text-xs font-bold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 shadow-md transition-all duration-300";
+                } else {
+                    btn.className = "flex-1 py-2 text-xs font-semibold rounded-xl text-stone-300 hover:text-white transition-all duration-300";
+                }
+            });
+
+            const ev = events[type];
+            document.getElementById('card-badge').innerText = ev.badge;
+            document.getElementById('event-title').innerText = ev.title;
+            document.getElementById('event-date').innerText = ev.date;
+            document.getElementById('event-time').innerText = ev.time;
+            document.getElementById('event-venue').innerText = ev.venue;
+            document.getElementById('event-icon').innerText = ev.icon;
+            document.getElementById('map-link').href = ev.map;
+        }
+
+        function copyLink(type) {
+            const fullUrl = `${window.location.origin}${window.location.pathname}?event=${type}`;
+            navigator.clipboard.writeText(fullUrl).then(() => {
+                alert(`Copied link for ${type.toUpperCase()}! You can now send this specific card link to your guests.`);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const eventParam = params.get('event');
+            if (events[eventParam]) {
+                switchEvent(eventParam);
+            } else {
+                switchEvent('mehndi');
+            }
+        });
+    </script>
+</body>
+</html>
